@@ -1,0 +1,26 @@
+{
+  "name": "todoporotofolio",
+  "version": "1.0.0",
+  "description": "Todo Portofolio Hacktiv8\\",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoviAndrew/ToDoPorotofolio.git"
+  },
+  "author": "Jovian Andrew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoviAndrew/ToDoPorotofolio/issues"
+  },
+  "homepage": "https://github.com/JoviAndrew/ToDoPorotofolio#readme",
+  "dependencies": {
+    "bcrypt": "^2.0.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.13"
+  }
+}
