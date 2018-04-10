@@ -8,9 +8,9 @@ router.post('/add', todo.addTodo);
 router.get('/show', todo.showTodo);
 
 //update todo
-router.put('/update', todo.updateTodo);
+router.put('/update/:id', todo.updateTodo);
 
 //delete todo
-router.delete('/delete', todo.deleteTodo);
+router.delete('/delete/:id', todo.deleteTodo);
 
 module.exports = router

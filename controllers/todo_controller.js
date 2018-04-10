@@ -1,83 +1,129 @@
 const todo = require('../model/todo');
-const ObjectID = require('mongodb').ObjectID;
+// const ObjectID = require('mongodb').ObjectID;
+const jwt = require('jsonwebtoken');
+
 
 module.exports = {
     addTodo: function(req, res){
-        todo
-            .create({
-                username: req.body.username,
-                todo: req.body.todo,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            })
-            .then(function(result){
-                res.status(200).json({
-                    message: "success added new task",
-                    result: result
-                })
-            })
-            .catch(function(err){
+        const token = req.headers.token
+        jwt.verify(token, process.env.SECRET, function(err, result){
+            console.log(result);
+            if(err){
                 res.status(500).json({
                     message: err
                 })
-            })
+            }else{
+                todo
+                    .create({
+                        user: result._id,
+                        todo: req.body.todo,
+                    })
+                    .then(function(result){
+                        res.status(200).json({
+                            message: "success added new task",
+                            result: result
+                        })
+                    })
+                    .catch(function(err){
+                        res.status(500).json({
+                            message: err
+                        })
+                    })
+            }
+        });
+
+        
     },
     deleteTodo: function(req, res){
-        todo
-            .bulkWrite([{
-                deleteOne: {
-                    filter: {'_id': ObjectID(req.params.id)}
-                }
-            }])
-            .then(function(result){
-                res.status(201).json({
-                    message: "Success delete data!",
-                    result: result
-                })
-            })
-            .catch(function(err){
+        const token = req.headers.token
+        jwt.verify(token, process.env.SECRET, function(err, result){
+            if(err){
                 res.status(500).json({
                     message: err
                 })
-            })
+            }else{
+            todo
+                .bulkWrite([{
+                    deleteOne: {
+                        filter: {'_id': ObjectID(req.params.id), 'username': result.username}
+                    }
+                }])
+                .then(function(result){
+                    res.status(201).json({
+                        message: "Success delete data!",
+                        result: result
+                    })
+                })
+                .catch(function(err){
+                    res.status(500).json({
+                        message: err
+                    })
+                })
+            }
+        })
     },
     showTodo: function(req, res){
-        todo
-            .find()
-            .exec()
-            .then(function(todoData){
-                res.status(200).json({
-                    message: "success get all todo data",
-                    list: todoData
-                })
-            })
-            .catch(function(err){
+        const token = req.headers.token
+        jwt.verify(token, process.env.SECRET, function(err, result){
+            if(err){
                 res.status(500).json({
                     message: err
                 })
-            })
+            }else{
+                todo
+                .find({
+                    user: result._id,
+                })
+                .populate('user')
+                .exec()
+                .then(function(todoData){
+                    res.status(200).json({
+                        message: "success get all todo data",
+                        list: todoData
+                    })
+                })
+                .catch(function(err){
+                    res.status(500).json({
+                        message: err
+                    })
+                })
+            }
+        });
+
+       
     },
     updateTodo: function(req, res){
-        todo
-            .bulkWrite([{
-                updateOne: {
-                    filter: {'_id': ObjectID(req.params.id)},
-                    update: {
-                        todo: req.body.todo,
-                        updatedAt: new Date()
-                    }
-                }
-            }])
-            .then(function(result){
-                res.status(201).json({
-                    message: "success update data",
-                    result: result
-                })
-            })
-            .catch(function(err){
+        const token = req.headers.token
+        jwt.verify(token, process.env.SECRET, function(err, result){
+            if(err){
                 res.status(500).json({
                     message: err
                 })
-            })
+            }else{
+                todo
+                    .bulkWrite([{
+                        updateOne: {
+                            filter: {
+                                '_id': req.params.id, 
+                                'user': result._id
+                            },
+                            update: {
+                                todo: req.body.todo,
+                                }
+                        }
+                    }])
+                    .then(function(result){
+                        res.status(201).json({
+                            message: "success update data",
+                            result: result
+                        })
+                    })
+                    .catch(function(err){
+                        res.status(500).json({
+                            message: err
+                        })
+                    })
+            }
+        })
     }
 }

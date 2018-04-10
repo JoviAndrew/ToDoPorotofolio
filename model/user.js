@@ -4,8 +4,6 @@ const Schema = mongoose.Schema
 let userSchema = mongoose.Schema({
     username: String,
     password: String,
-    createdAt: Date,
-    updatedAt: Date,
 }, {
     timestamps: true
 })

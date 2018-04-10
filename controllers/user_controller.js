@@ -7,6 +7,7 @@ const saltRounds = 10;
 
 module.exports = {
     registerUser: function(req, res){
+        var regexUsername = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         let password = req.body.password;
         let letter = /[a-zA-Z]/; 
         let number = /[0-9]/;
@@ -19,44 +20,50 @@ module.exports = {
             res.json({
                 message: 'Password must be alphanumeric'
             })
+        }else if(!regexUsername.test(req.body.username)){
+            res.json({
+                message: 'Username must be email'
+            })
         }else{
             users.findOne({
                 username: req.body.username
             })
             .then(function(userData){
-                if(userData.length != 0){
+                if(userData != null){
                     res.status(400).json({
                         message: "username has been taken!",
                     })
                 }else{
-                    bcrypt.genSalt(saltRounds, function(err, salt) {
-                        bcrypt.hash(password, salt, function(err, hash) {
-                            users
-                            .create({
-                                username: req.body.username,
-                                password: hash,
-                                createdAt: new Date(),
-                                updatedAt: new Date()
+                    let salt = bcrypt.genSaltSync(saltRounds)
+                    let hash = bcrypt.hashSync(password, salt);
+                        users
+                        .create({
+                            username: req.body.username,
+                            password: hash,
+                        })
+                        .then(function(result){
+                            res.status(200).json({
+                                message: "success register a new user",
+                                result: result
                             })
-                            .then(function(result){
-                                res.status(200).json({
-                                    message: "success register a new user",
-                                    result: result
-                                })
-                            }) 
-                        });
-                    });            
+                        })
+                        .catch(function(err){
+                            res.status(500).json({
+                                message: err
+                            })
+                        }) 
                 }
             })
             .catch(function(err){
                 res.status(500).json({
                     message: err
                 })
-            })
+            }) 
+            
         }  
     },
     loginUser: function(req, res){
-        users.find({
+        users.findOne({
             username: req.body.username
         })
         .then(function(userData){
@@ -71,7 +78,7 @@ module.exports = {
                             message: 'incorrect username or password'
                         })
                     }else{
-                        let token = jwt.sign({username: userData.username}, process.env.SECRET)
+                        let token = jwt.sign({username: userData._id}, process.env.SECRET)
                         res.json({
                             token: token
                         })
