@@ -1,5 +1,4 @@
 const todo = require('../model/todo');
-// const ObjectID = require('mongodb').ObjectID;
 const jwt = require('jsonwebtoken');
 
 
@@ -15,7 +14,7 @@ module.exports = {
             }else{
                 todo
                     .create({
-                        user: result._id,
+                        user: result.id,
                         todo: req.body.todo,
                     })
                     .then(function(result){
@@ -45,7 +44,10 @@ module.exports = {
             todo
                 .bulkWrite([{
                     deleteOne: {
-                        filter: {'_id': ObjectID(req.params.id), 'username': result.username}
+                        filter: {
+                            '_id': req.params.id, 
+                            'user': result.id
+                        }
                     }
                 }])
                 .then(function(result){
@@ -72,11 +74,12 @@ module.exports = {
             }else{
                 todo
                 .find({
-                    user: result._id,
+                    'user': result.id,
                 })
                 .populate('user')
                 .exec()
                 .then(function(todoData){
+
                     res.status(200).json({
                         message: "success get all todo data",
                         list: todoData
@@ -105,7 +108,7 @@ module.exports = {
                         updateOne: {
                             filter: {
                                 '_id': req.params.id, 
-                                'user': result._id
+                                'user': result.id
                             },
                             update: {
                                 todo: req.body.todo,

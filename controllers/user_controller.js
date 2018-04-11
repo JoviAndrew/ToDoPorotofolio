@@ -12,6 +12,7 @@ module.exports = {
         let letter = /[a-zA-Z]/; 
         let number = /[0-9]/;
         let goodPassword = letter.test(password) && number.test(password);
+        console.log(req.body.password);
         if(password.length < 6){
             res.json({
                 message: 'Password too short!'
@@ -78,7 +79,7 @@ module.exports = {
                             message: 'incorrect username or password'
                         })
                     }else{
-                        let token = jwt.sign({username: userData._id}, process.env.SECRET)
+                        let token = jwt.sign({id: userData._id}, process.env.SECRET)
                         res.json({
                             token: token
                         })
