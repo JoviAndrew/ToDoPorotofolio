@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     addTodo: function(req, res){
         const token = req.headers.token
+        
         jwt.verify(token, process.env.SECRET, function(err, result){
-            console.log(result);
             if(err){
                 res.status(500).json({
                     message: err

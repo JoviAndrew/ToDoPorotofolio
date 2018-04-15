@@ -1,0 +1,23 @@
+.alert{
+    display: none;
+    background-color: lightgreen;
+    padding: 40px 20px;
+    margin-top: 10%
+}
+
+.update{
+    display: none;
+    margin: 4%
+}
+
+.headerLogo{
+    display: flex;
+    background-color: bisque;
+    justify-content: space-evenly;
+}
+
+.bodyTodo{
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+}

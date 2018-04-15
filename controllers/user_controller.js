@@ -1,5 +1,4 @@
 const users = require('../model/user');
-const ObjectID = require('mongodb').ObjectID;
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -12,7 +11,6 @@ module.exports = {
         let letter = /[a-zA-Z]/; 
         let number = /[0-9]/;
         let goodPassword = letter.test(password) && number.test(password);
-        console.log(req.body.password);
         if(password.length < 6){
             res.json({
                 message: 'Password too short!'
@@ -68,8 +66,8 @@ module.exports = {
             username: req.body.username
         })
         .then(function(userData){
-            if(userData.length == 0){
-                res.json({
+            if(!userData){
+                res.status(400).json({
                     message: 'incorrect username or password'
                 })
             }else{
@@ -81,6 +79,7 @@ module.exports = {
                     }else{
                         let token = jwt.sign({id: userData._id}, process.env.SECRET)
                         res.json({
+                            message: 'Success login',
                             token: token
                         })
                     }

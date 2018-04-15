@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.0.0/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-UU2jkdv1M9UEjLje/kygVxqMBq9Jrg9z+Gqvw972H6BqKTzDvLaRJfK7PnzLM4SI" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style/loginStyle.css" />
+
+</head>
+<body>
+    <div id="appRegis">
+        <div class="row" id="landingMain">
+            <div class="col-lg-6 col-sm-12">
+                <h2>REGISTER!</h2> 
+            </div>
+            <div class="col-lg-6 col-sm-12" id="loginDiv">
+                <input id="username" type="text" placeholder="email@mail.com">
+                <input type="password" placeholder="Password" id="password">
+                <input type="password" placeholder="Confirm Password" id="confirmPassword">
+                <button class="btn btn-outline-success" v-on:click="register()">Register</button>
+                <button class="btn btn-outline-danger" v-on:click="sendtoLogin()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./script/vueRegis.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+              integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+              crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>

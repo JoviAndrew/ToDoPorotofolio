@@ -1,0 +1,30 @@
+div#landingMain{
+    display: flex;
+    align-items: center;
+    margin: 20% 3%;
+    padding:0; 
+    background-color: blanchedalmond;
+}
+
+div#loginDiv{
+    background-color: white;
+}
+
+div#title {
+    align-self: center;
+    height: 100%;
+    padding: 0;
+}
+
+#title{
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: coral;
+    font-size: 60px;
+    -webkit-text-stroke: 2px white;
+    font-weight: bold;
+}
+
+input{
+    margin: 1% 0%;
+}

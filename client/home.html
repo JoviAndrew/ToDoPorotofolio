@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.0.0/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-UU2jkdv1M9UEjLje/kygVxqMBq9Jrg9z+Gqvw972H6BqKTzDvLaRJfK7PnzLM4SI" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style/homeStyle.css" />
+</head>
+<body>
+    <div id="appHome">
+        <div class="row headerLogo">
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong><h3>TODO LIST!</h3></strong>
+                </div>
+                <div class="col-lg-6">
+                    <button class="logoutBtn btn btn-outline-warning pull-right" v-on:click="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+        <div class="row bodyTodo">
+            <div class="col-lg-6 col-sm-6">
+                <h3>Todo List!</h3>
+
+                <button class="btn btn-link" v-on:click="getAllList()">Get All List</button>
+                <table class="table table-hover" id="todoTable" style="border: 1px;">
+                    <tr>
+                        <thead>
+                            <th>No.</th>
+                            <th>Todo</th>
+                            <th>Action</th>
+                        </thead>
+                    </tr>
+                    <tbody is="table-todo-content" class="table table-hove" v-bind:tasks="tasks"></tbody>
+                </table>
+
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <h3>Add new Todo</h3>
+                
+                <textarea id="newTodo" cols="50" rows="5"></textarea><br>
+                <button class="btn btn-outline-success" v-on:click="addTodo()">Add New Task</button>
+
+                <div class="alert2 alert alert-dismissible alert-success">
+                    <strong><p id="alert-message"></p></strong>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-12"></div>
+            <div class="update col-lg-6 col-sm-12">
+                <h3>Update</h3>
+                <input type="text" id="todoUpdate" disabled>
+                <input type="text" id="newUpdate" placeholder="New Task">
+                <button class="btn btn-outline-primary" v-on:click="updateTodo()">Update!</button>
+            </div>
+            <div class="col-lg-3 col-sm-12"></div>
+
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script/vueHome.js"></script>
+</body>
+</html>
