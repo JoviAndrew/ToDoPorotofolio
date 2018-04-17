@@ -10,14 +10,27 @@
     margin: 4%
 }
 
-.headerLogo{
-    display: flex;
+.bg-primary{
     background-color: bisque;
-    justify-content: space-evenly;
 }
 
 .bodyTodo{
-    margin-top: 5%;
+    margin: 5% 0%;
     display: flex;
     align-items: center;
+}
+
+#greet{
+    text-align: center;
+    margin: 1%;
+}
+
+.row.footer {
+    background-color: bisque;
+    width: 100%;
+    color: white;
+    -webkit-text-stroke: 1px lightsalmon;
+    font-size: 15px;
+    text-align: center;
+    bottom: 0;
 }

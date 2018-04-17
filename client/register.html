@@ -16,11 +16,18 @@
                 <h2>REGISTER!</h2> 
             </div>
             <div class="col-lg-6 col-sm-12" id="loginDiv">
-                <input id="username" type="text" placeholder="email@mail.com">
-                <input type="password" placeholder="Password" id="password">
-                <input type="password" placeholder="Confirm Password" id="confirmPassword">
+                <input id="firstname" type="text" placeholder="First Name" v-model="firstname"><br>
+                <input id="lastname" type="text" placeholder="Last Name" v-model="lastname"><br>
+                <input id="username" type="text" placeholder="Username: email@mail.com" v-model="username"><br>
+                <input type="password" placeholder="Password" id="password" v-model="password"><br>
+                <input type="password" placeholder="Confirm Password" id="confirmPassword" v-model="confirm"><br>
                 <button class="btn btn-outline-success" v-on:click="register()">Register</button>
                 <button class="btn btn-outline-danger" v-on:click="sendtoLogin()">Cancel</button>
+            </div>
+        </div>
+        <div class="row footer">
+            <div class="col-12">
+                <p>Please turn off ad-block extensions as it may prevent the app to work properly! Thank you :)</p>
             </div>
         </div>
     </div>

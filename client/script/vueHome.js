@@ -34,10 +34,18 @@ let vm = new Vue({
     data:{
         userIn: false,
         tasks: [],
-        update: ''
+        update: '',
+        firstname: '',
+        disabled: 0,
     },
     mounted: function(){
         this.checkOnline()
+    },
+    created: function(){
+        let firstname =  localStorage.getItem('firstname');
+        this.firstname = firstname;
+        let fb = localStorage.getItem('fb');
+        this.disabled = fb;
     },
     components:{
         tableContent:tableContent
@@ -102,6 +110,9 @@ let vm = new Vue({
             .catch(function(err){
                 console.log(err);
             })
+        },
+        goToProfile(){
+            window.location.href = "profile.html"
         }
     }
 })

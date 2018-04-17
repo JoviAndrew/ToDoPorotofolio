@@ -10,16 +10,29 @@
 </head>
 <body>
     <div id="appHome">
-        <div class="row headerLogo">
-            <div class="row">
-                <div class="col-lg-6">
-                    <strong><h3>TODO LIST!</h3></strong>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+                <a class="navbar-brand" href="#">To-Do Fancy</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <button v-bind:disabled="disabled == 1 ? true : false" class="btn btn-warning" v-on:click="goToProfile">Profile</button>
+                        </li>
+                    </ul>
+                    <button class="btn btn-warning" v-on:click="logout()">Logout</button>
                 </div>
-                <div class="col-lg-6">
-                    <button class="logoutBtn btn btn-outline-warning pull-right" v-on:click="logout()">Logout</button>
+            </nav>
+            <div class="row">
+                <div class="col-12">
+                    <h3 id="greet">Hello, {{firstname}}</h3>
                 </div>
             </div>
-        </div>
         <div class="row bodyTodo">
             <div class="col-lg-6 col-sm-6">
                 <h3>Todo List!</h3>
@@ -40,7 +53,7 @@
             <div class="col-lg-6 col-sm-6">
                 <h3>Add new Todo</h3>
                 
-                <textarea id="newTodo" cols="50" rows="5"></textarea><br>
+                <textarea id="newTodo" cols="50" rows="5" style="resize: none"></textarea><br>
                 <button class="btn btn-outline-success" v-on:click="addTodo()">Add New Task</button>
 
                 <div class="alert2 alert alert-dismissible alert-success">
@@ -59,6 +72,11 @@
             </div>
             <div class="col-lg-3 col-sm-12"></div>
 
+        </div>
+        <div class="row footer">
+            <div class="col-12">
+                <p>Please turn off ad-block extensions as it may prevent the app to work properly! Thank you :)</p>
+            </div>
         </div>
     </div>
     

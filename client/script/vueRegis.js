@@ -1,25 +1,51 @@
 new Vue({
     el:'#appRegis',
+    data: {
+        firstname: '',
+        lastname: '',
+        username: '',
+        password: '',
+        confirm: '',
+    },
     methods:{
         sendtoLogin(){
             window.location.href = 'index.html'
         },
         register(){
-            let username = $('#username').val();
-            let password = $('#password').val();
-            let confirm = $('#confirmPassword').val();
+            let firstname = this.firstname;
+            let lastname = this.lastname;
+            let username = this.username;
+            let password = this.password;
+            let confirm = this.confirm;
 
-            if(password != confirm){
+            if(firstname == '' || lastname == ''|| username == ''){
+                alert('Fields needs to be filled');
+            }
+            else if(password != confirm){
                 alert('Password and confirm password is not the same!')
             }else{
-                axios.post('http://localhost:3000/user/register', {username: username, password: password})
+                axios.post('http://localhost:3000/index/register', {firstname: firstname, lastname: lastname, username: username, password: password})
                 .then(function(response){
-                    if(response.data.message != "success register a new user"){
-                        alert(response.data.message);
-                    }else{
-                        alert(response.data.message);
-                        window.location.href = 'index.html'
-                    }
+                    alert(response.data.message);
+                    axios.post('http://localhost:3000/index/login', {username: username, password: password})
+                        .then(function(response){
+                            if(response.data.message != 'Success login'){
+                                alert(response.data.message)
+                            }else{
+                                localStorage.setItem('token', response.data.token);
+                                localStorage.setItem('firstname', response.data.firstname);
+                                localStorage.setItem('lastname', response.data.lastname);
+                                localStorage.setItem('username', response.data.username);
+                                localStorage.setItem('fb', 0);
+                                window.location.href = 'home.html'
+                            }
+                        })
+                        .catch(function(error){
+                            alert(error)
+                        })
+                })
+                .catch(function(err){
+                    alert('Error Input: Username has been taken!');
                 })
             }
         

@@ -1,0 +1,36 @@
+.formProfile.col-lg-4 {
+    display: flex;
+    margin-top: 3%;
+    flex-direction: column
+}
+
+button.btnUpdate.btn.btn-outline-success {
+    margin: 2%;
+}
+
+.divedit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1%;
+}
+
+.row.footer {
+    background-color: bisque;
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    -webkit-text-stroke: 1px lightsalmon;
+    font-size: 15px;
+    text-align: center;
+}
+
+form{
+    margin-bottom: 5%;
+}
+
+label{
+    margin: 2%
+}

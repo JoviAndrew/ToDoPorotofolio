@@ -16,14 +16,21 @@
             </div>
             <div class="col-lg-6 col-sm-12-" id="loginDiv">
                 <h2>Login</h2>
-                <input id="username" type="text" placeholder="username"><br>
-                <input type="password" placeholder="password" id="password"><br>
+                <input v-model="username" type="text" placeholder="username"><br>
+                <input v-model="password" type="password" placeholder="password"><br>
                 <button class="btn btn-outline-warning" type="submit" v-on:click="login">Login</button>
                 <button class="btn btn-link" v-on:click="sendtoRegis()">Register</button>
+                <div class="fb-login-button navbarbtn" scope="public_profile,email" onlogin="checkLoginState"></div>
+            </div>
+        </div>
+        <div class="row footer">
+            <div class="col-12">
+                <p>Please turn off ad-block extensions as it may prevent the app to work properly! Thank you :)</p>
             </div>
         </div>
     </div>
     
+    <script src="script/loginFB.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./script/vueIndex.js"></script>
     <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -28,3 +28,16 @@ div#title {
 input{
     margin: 1% 0%;
 }
+
+.row.footer {
+    background-color: bisque;
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    -webkit-text-stroke: 1px lightsalmon;
+    font-size: 15px;
+    text-align: center;
+    position: fixed;
+}

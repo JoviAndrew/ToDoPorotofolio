@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.0.0/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-UU2jkdv1M9UEjLje/kygVxqMBq9Jrg9z+Gqvw972H6BqKTzDvLaRJfK7PnzLM4SI" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style/profileStyle.css" />
+</head>
+<body>
+    <div id="appProfile">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+            <a class="navbar-brand" href="home.html">To-Do Fancy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-on:click="goToProfile">Profile</a>
+                </li>
+                </ul>
+            <button class="btn btn-warning" v-on:click="logout()">Logout</button>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="divedit col-12">
+                <button class="editbtn btn btn-outline-primary" v-on:click="disabled = (disabled + 1) % 2">Enable Edit</button>
+            </div>
+            <div class="divedit col-12">
+                <h6>If you only want to change your username, then you can leave the password blank</h4>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="formProfile col-lg-4">
+                    <label> Username: </label><input :disabled="disabled == 1 ? true : false" v-model="username" type="text">
+                    <label> Old Password: </label><input :disabled="disabled == 1 ? true : false" v-model="oldPassword" id="newPass" type="password" placeholder="Minimum 6 Alphanumeric Characters">
+                    <label> New Password: </label><input :disabled="disabled == 1 ? true : false" v-model="newPassword" id="oldPass" type="password" placeholder="Minimum 6 Alphanumeric Characters">
+                    <label> Confirm Password: </label><input :disabled="disabled == 1 ? true : false" v-model="confirm" type="password" placeholder="Confirm Password">
+                    <button :disabled="disabled == 1 ? true : false" class="btnUpdate btn btn-outline-success" v-on:click="updateUser()">Update</button>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        <div class="row footer">
+            <div class="col-12">
+                <p>Please turn off ad-block extensions as it may prevent the app to work properly! Thank you :)</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./script/vueProfile.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+                crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
