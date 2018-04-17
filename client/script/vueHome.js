@@ -14,7 +14,7 @@ var tableContent = Vue.component('table-todo-content',{
         deleteTodo(id){
             let token = localStorage.getItem('token')
 
-            axios.delete(`http://localhost:3000/home/delete/${id}`, {headers: {token: token}})
+            axios.delete(`https://project-todo-fancy.firebaseapp.com/home/delete/${id}`, {headers: {token: token}})
             .then(function(response){
                 console.log(response.data)
                 vm.getAllList();
