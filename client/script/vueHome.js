@@ -14,7 +14,7 @@ var tableContent = Vue.component('table-todo-content',{
         deleteTodo(id){
             let token = localStorage.getItem('token')
 
-            axios.delete(`https://project-todo-fancy.firebaseapp.com/home/delete/${id}`, {headers: {token: token}})
+            axios.delete(`https://git.heroku.com/todo-fancy-hacktiv8.git/home/delete/${id}`, {headers: {token: token}})
             .then(function(response){
                 console.log(response.data)
                 vm.getAllList();
@@ -69,7 +69,7 @@ let vm = new Vue({
             this.tasks = [];
             let token = localStorage.getItem('token');
 
-            axios.get("http://localhost:3000/home/show", {headers: {token:token}})
+            axios.get("https://git.heroku.com/todo-fancy-hacktiv8.git/home/show", {headers: {token:token}})
             .then(response =>{
                 let lists = response.data.list
                 lists.forEach(list =>{
@@ -85,7 +85,7 @@ let vm = new Vue({
             let task = $('#newTodo').val();
             let token = localStorage.getItem('token');
 
-            axios.post('http://localhost:3000/home/add', {todo: task} ,{headers: {token:token}})
+            axios.post('https://git.heroku.com/todo-fancy-hacktiv8.git/home/add', {todo: task} ,{headers: {token:token}})
             .then((response) => {
                 console.log(response.data)
                 $('#alert-message').html(response.data.message);
@@ -102,7 +102,7 @@ let vm = new Vue({
             let newUpdate = $('#newUpdate').val();
             let id = this.update;
 
-            axios.put(`http://localhost:3000/home/update/${id}`, {todo: newUpdate}, {headers:{token:token}})
+            axios.put(`https://git.heroku.com/todo-fancy-hacktiv8.git/home/update/${id}`, {todo: newUpdate}, {headers:{token:token}})
             .then(function(response){
                 console.log(response.data)
                 this.getAllList();

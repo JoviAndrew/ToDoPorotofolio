@@ -24,10 +24,10 @@ new Vue({
             else if(password != confirm){
                 alert('Password and confirm password is not the same!')
             }else{
-                axios.post('http://localhost:3000/index/register', {firstname: firstname, lastname: lastname, username: username, password: password})
+                axios.post('https://git.heroku.com/todo-fancy-hacktiv8.git/index/register', {firstname: firstname, lastname: lastname, username: username, password: password})
                 .then(function(response){
                     alert(response.data.message);
-                    axios.post('http://localhost:3000/index/login', {username: username, password: password})
+                    axios.post('https://git.heroku.com/todo-fancy-hacktiv8.git/index/login', {username: username, password: password})
                         .then(function(response){
                             if(response.data.message != 'Success login'){
                                 alert(response.data.message)

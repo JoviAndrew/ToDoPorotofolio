@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds153577.mlab.com:53577/todolist`);
+const port = process.env.PORT || 4000;
 
 
 const indexRouter = require('./routers/index'); 

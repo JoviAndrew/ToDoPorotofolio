@@ -8,7 +8,7 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      axios.post('https://project-todo-fancy.firebaseapp.com/index/loginFB', {},{headers: {token: response.authResponse.accessToken}})
+      axios.post('https://git.heroku.com/todo-fancy-hacktiv8.git/index/loginFB', {},{headers: {token: response.authResponse.accessToken}})
       .then( function(axiosResponse){
             let token = axiosResponse.data.token
             alert(axiosResponse.data.message);
@@ -64,6 +64,7 @@ function statusChangeCallback(response) {
     // });
 
   };
+  
 
   // Load the SDK asynchronously
   (function(d, s, id) {
