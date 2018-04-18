@@ -12,7 +12,7 @@ new Vue({
             let username = this.username;
             let password = this.password;
         
-            axios.post('https://git.heroku.com/todo-fancy-hacktiv8.git/index/login', {username: username, password: password})
+            axios.post('https://todo-fancy-hacktiv8.herokuapp.com/index/login', {username: username, password: password})
             .then(function(response){
                 console.log(response.data)
                 if(response.data.message != 'Success login'){

@@ -24,7 +24,7 @@ new Vue({
 
             //Change username only
             if(new_password == '' && confirm == ''){
-                axios.put('https://git.heroku.com/todo-fancy-hacktiv8.git/user/update-user', {username: username, new_password: new_password, old_password: old_password}, {headers: {token:token}})
+                axios.put('https://todo-fancy-hacktiv8.herokuapp.com/user/update-user', {username: username, new_password: new_password, old_password: old_password}, {headers: {token:token}})
                     .then(function(response){
                         alert(response.data.message);
                         window.location.href = 'home.html'
@@ -38,7 +38,7 @@ new Vue({
                 if(new_password != confirm){
                     alert('Password and confirm password is not the same!')
                 }else{
-                    axios.put('https://git.heroku.com/todo-fancy-hacktiv8.git/user/update-user', {username: username, new_password: new_password, old_password: old_password}, {headers: {token:token}})
+                    axios.put('https://todo-fancy-hacktiv8.herokuapp.com/user/update-user', {username: username, new_password: new_password, old_password: old_password}, {headers: {token:token}})
                     .then(function(response){
                         alert(response.data.message);
                         window.location.href = 'home.html'
