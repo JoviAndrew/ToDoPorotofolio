@@ -31,7 +31,6 @@ module.exports = {
                 username: req.body.username
             })
             .then(function(userData){
-                console.log(userData);
                 if(userData != null){
                     res.status(400).json({
                         message: "username has been taken!",
@@ -92,7 +91,6 @@ module.exports = {
         })
     },
     loginFB: function(req, res){
-        console.log('masuk')
         FB.api('me', { fields: ['id', 'first_name', 'last_name', 'email'], access_token: req.headers.token }, function (result) {
             users.findOne({
                 username: result.email
