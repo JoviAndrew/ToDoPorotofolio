@@ -9,13 +9,19 @@ new Vue({
             window.location.href = 'register.html'
         },
         login(){
+
             let username = this.username;
             let password = this.password;
-        
+
+            if(username == "" || password == ""){
+                alert('Username or password is empty!')
+            }
+            
             axios.post('https://todo-fancy-hacktiv8.herokuapp.com/index/login', {username: username, password: password})
             .then(function(response){
                 console.log(response.data)
                 if(response.data.message != 'Success login'){
+                    console.log(response.data)
                     alert(response.data.message)
                 }else{
                     alert(response.data.message);
@@ -32,7 +38,6 @@ new Vue({
             })
         },
         checkLoginState() {
-            console.log('masuk')
             FB.getLoginStatus(function(response) {
               statusChangeCallback(response);
             });
